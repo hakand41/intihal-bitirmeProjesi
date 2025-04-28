@@ -3,6 +3,8 @@ import uuid
 import subprocess
 import zipfile
 import json
+
+from datetime import datetime, timezone
 from config import UPLOAD_FOLDER
 from db_utils import get_db_connection
 from similarity_algorithms import (
@@ -192,6 +194,8 @@ def perform_comparison(content_id):
         # Job kaydı
         conn = get_db_connection()
         cur = conn.cursor()
+
+        now = datetime.now(timezone.utc).replace(tzinfo=None)
         cur.execute(
             "INSERT INTO JplagJobs (JobId, IcerikId, ZipPath) VALUES (?,?,?)",
             (job_id, content_id, zip_path)
