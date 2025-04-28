@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Dosya Karşılaştırma</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .container { width: 95%; margin: auto; }
+    .header { text-align: center; margin-bottom: 1rem; }
+    .columns { display: flex; gap: 1rem; }
+    .column {
+      flex: 1; 
+      border: 1px solid #ccc; 
+      padding: 1rem; 
+      white-space: pre-wrap; 
+      word-wrap: break-word;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    h2, h3 { margin: .2rem 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>{{ user1 }} — {{ user2 }}</h2>
+      <h3>Benzerlik Oranı: {{ similarity }}</h3>
+    </div>
+    <div class="columns">
+      <div class="column">{{ text1|safe }}</div>
+      <div class="column">{{ text2|safe }}</div>
+    </div>
+  </div>
+</body>
+</html>
