@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template, abort
 from config import UPLOAD_FOLDER
 from upload import process_and_save_file
 from compare import perform_comparison, get_content_info
-from helpers import read_text, highlight_texts
+from helpers import read_text, highlight_texts, highlight_with_difflib
 from db_utils import get_db_connection
 
 import os
@@ -87,28 +87,43 @@ def compare_files():
 @app.route('/compare_html', methods=['POST'])
 def compare_html():
     data = request.get_json(force=True)
-    for key in ('KullaniciAdi1','KullaniciAdi2','Dosya1','Dosya2','BenzerlikOrani'):
+
+    # Gerekli tüm anahtarlar
+    required = ('KullaniciAdi1', 'KullaniciAdi2', 'Dosya1', 'Dosya2', 'BenzerlikOrani')
+    for key in required:
         if key not in data:
             abort(400, f"'{key}' eksik.")
-    u1, u2 = data['KullaniciAdi1'], data['KullaniciAdi2']
-    p1, p2 = data['Dosya1'], data['Dosya2']
+
+    # DÜZELTME: 'Kullanici2' yerine 'KullaniciAdi2'
+    u1 = data['KullaniciAdi1']
+    u2 = data['KullaniciAdi2']
+    p1 = data['Dosya1']
+    p2 = data['Dosya2']
     sim = data['BenzerlikOrani']
 
+    # Dosya var mı kontrolü
     if not os.path.isfile(p1) or not os.path.isfile(p2):
         missing = p1 if not os.path.isfile(p1) else p2
         abort(404, f"Dosya bulunamadı: {missing}")
 
+    # Temizlenmiş .txt/.docx/.pdf metinlerini oku
     raw1 = read_text(p1)
     raw2 = read_text(p2)
-    h1, h2 = highlight_texts(raw1, raw2)
 
-    h1 = h1.replace('\n','<br>')
-    h2 = h2.replace('\n','<br>')
+    # difflib tabanlı hızlı vurgulama
+    h1, h2 = highlight_with_difflib(raw1, raw2, min_len=30)
 
-    return render_template('compare.html',
-        user1=u1, user2=u2,
+    # HTML’de satır sonu için <br>
+    h1 = h1.replace('\n', '<br>')
+    h2 = h2.replace('\n', '<br>')
+
+    return render_template(
+        'compare.html',
+        user1=u1,
+        user2=u2,
         similarity=sim,
-        text1=h1, text2=h2
+        text1=h1,
+        text2=h2
     )
 
 @app.route('/jplag/view', methods=['POST'])

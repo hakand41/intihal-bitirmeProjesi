@@ -1,6 +1,7 @@
 # helpers.py
 import random, os, re, unicodedata
 from docx import Document
+from difflib import SequenceMatcher
 
 try:
     import pdfplumber
@@ -74,6 +75,27 @@ def highlight_char_spans(t1, t2, min_len=20):
 
 def highlight_texts(t1, t2):
     spans1, spans2 = highlight_char_spans(t1, t2)
-    if not spans1: return t1, t2
+    if not spans1:
+        return t1, t2
     colors = [random_color() for _ in spans1]
-    return apply_char_highlighting(t1, spans1, colors), apply_char_highlighting(t2, spans2, colors)
+    return (
+        apply_char_highlighting(t1, spans1, colors),
+        apply_char_highlighting(t2, spans2, colors)
+    )
+
+def highlight_with_difflib(t1: str, t2: str, min_len: int = 20):
+    """
+    t1 ve t2 üzerinde SequenceMatcher kullanarak en az `min_len`
+    uzunluğundaki eşleşen blokları boyar.
+    """
+    matcher = SequenceMatcher(None, t1, t2, autojunk=False)
+    spans1, spans2, colors = [], [], []
+    for block in matcher.get_matching_blocks():
+        i, j, size = block.a, block.b, block.size
+        if size >= min_len:
+            spans1.append((i, size))
+            spans2.append((j, size))
+            colors.append(random_color())
+    h1 = apply_char_highlighting(t1, spans1, colors)
+    h2 = apply_char_highlighting(t2, spans2, colors)
+    return h1, h2
