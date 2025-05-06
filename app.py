@@ -2,10 +2,13 @@ from flask import Flask, request, jsonify, render_template, abort
 from config import UPLOAD_FOLDER
 from upload import process_and_save_file
 from compare import perform_comparison, get_content_info
-from helpers import read_text, highlight_texts, highlight_with_difflib
+from helpers import highlight_char_spans, read_text, highlight_texts, highlight_with_difflib, get_difflib_spans
 from db_utils import get_db_connection
+from flask_cors import CORS
 
 import os
+import time
+import datetime
 import subprocess
 import threading
 import webbrowser
@@ -13,6 +16,8 @@ import webbrowser
 app = Flask(__name__, template_folder='templates')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 VIEW_PROCS: dict[str, subprocess.Popen] = {}
 
@@ -201,6 +206,65 @@ def jplag_view():
         "message": "JPlag arayüzü başlatıldı.",
         "url": f"http://localhost:{port}"
     }), 200
+
+@app.route('/compare_json', methods=['POST'])
+def compare_json():
+    data = request.get_json(force=True)
+
+    # Gerekli alanlar (sim artık BenzerlikOrani’dan geliyor)
+    required = ('KullaniciAdi1', 'KullaniciAdi2', 'Dosya1', 'Dosya2', 'BenzerlikOrani')
+    for key in required:
+        if key not in data:
+            abort(400, f"'{key}' eksik.")
+
+    u1 = data['KullaniciAdi1']
+    u2 = data['KullaniciAdi2']
+    p1 = data['Dosya1']
+    p2 = data['Dosya2']
+    try:
+        sim = float(data['BenzerlikOrani'])
+    except (TypeError, ValueError):
+        abort(400, "'BenzerlikOrani' sayısal bir değer olmalı.")
+
+    # Dosya varlık kontrolü
+    if not os.path.isfile(p1) or not os.path.isfile(p2):
+        missing = p1 if not os.path.isfile(p1) else p2
+        abort(404, f"Dosya bulunamadı: {missing}")
+
+    # Karşılaştırma süresi ölçümü
+    start_time = time.time()
+
+    # Metinleri oku
+    raw1 = read_text(p1)
+    raw2 = read_text(p2)
+
+    # Eşleşen blokları hızlıca al
+    spans1, spans2 = get_difflib_spans(raw1, raw2, min_len=30)
+
+    # Kelime setleri
+    words1 = raw1.split()
+    words2 = raw2.split()
+    set1, set2 = set(words1), set(words2)
+
+    result = {
+        "user1": u1,
+        "user2": u2,
+        "similarity": sim,
+        "totalWords1": len(words1),
+        "totalWords2": len(words2),
+        "matchingWordCount": len(set1 & set2),
+        "uniqueWords1": len(set1 - set2),
+        "uniqueWords2": len(set2 - set1),
+        "matchSpans": [
+            {"start1": s1, "length": l1, "start2": s2, "length": l2}
+            for (s1, l1), (s2, l2) in zip(spans1, spans2)
+        ],
+        "diffSpans": [],
+        "timeElapsed": round(time.time() - start_time, 4),
+        "timestamp": datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+    }
+
+    return jsonify(result), 200
 
 if __name__ == '__main__':
     app.run(debug=True)

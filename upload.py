@@ -39,8 +39,12 @@ def clean_text(text):
     text = remove_document_metadata(text)
     # 2. Regex ile kelime bazlı tokenizasyon
     tokens = re.findall(r'\b\w+\b', text.lower(), flags=re.UNICODE)
-    # 3. Stop-word temizle
-    tokens = [t for t in tokens if t not in turkish_stop_words]
+    # 3. Stop-word temizle ve sayısal içerikleri çıkar
+    tokens = [
+        t for t in tokens
+        if t not in turkish_stop_words
+           and not any(ch.isdigit() for ch in t)
+    ]
     return ' '.join(tokens)
 
 def process_and_save_file(file_path, user_id, content_id, icerik_turu):

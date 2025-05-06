@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Yan Yana Karşılaştırma</title>
+  <style>
+    .container { display: flex; gap: 1rem; }
+    .column {
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+      font-family: monospace;
+      position: relative;
+    }
+    mark { background: yellow; }
+  </style>
+</head>
+<body>
+  <h1>Metinleri Yan Yana ve Highlight</h1>
+  <button id="btn">Veriyi Getir & Göster</button>
+  <div class="container">
+    <div class="column" id="col1"></div>
+    <div class="column" id="col2"></div>
+  </div>
+
+  <script>
+    const apiUrl = 'http://localhost:5000/compare_json';
+    const payload = {
+        KullaniciAdi1: "Ahmet Yılmaz",
+        KullaniciAdi2: "Mehmet Demir",
+        Dosya1: "C:\\Users\\hakan\\OneDrive\\Masaüstü\\deneme\\Intihal_Tespit_Araçları_Karşılaştırması.docx_cleaned.txt",
+        Dosya2: "C:\\Users\\hakan\\OneDrive\\Masaüstü\\deneme\\tasarim_raporu.docx_cleaned.txt",
+        BenzerlikOrani: 0.12
+      };
+
+    function escapeHTML(str) {
+      return str.replace(/&/g,'&amp;')
+                .replace(/</g,'&lt;')
+                .replace(/>/g,'&gt;');
+    }
+
+    function applyHighlights(text, spans) {
+      let out = '', last = 0;
+      spans.forEach(s => {
+        out += escapeHTML(text.slice(last, s.start));
+        out += '<mark>' + escapeHTML(text.slice(s.start, s.start + s.length)) + '</mark>';
+        last = s.start + s.length;
+      });
+      out += escapeHTML(text.slice(last));
+      return out;
+    }
+
+    document.getElementById('btn').addEventListener('click', async () => {
+      try {
+        const res = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error(await res.text());
+        const d = await res.json();
+
+        // 1. Metinleri ve highlight span’larını al
+        const spans1 = d.matchSpans.map(s=>({start:s.start1, length:s.length}));
+        const spans2 = d.matchSpans.map(s=>({start:s.start2, length:s.length}));
+
+        // 2. Kolonlara aktar
+        document.getElementById('col1').innerHTML = applyHighlights(d.raw1, spans1);
+        document.getElementById('col2').innerHTML = applyHighlights(d.raw2, spans2);
+      } catch(e) {
+        alert('Hata: ' + e.message);
+      }
+    });
+  </script>
+</body>
+</html>

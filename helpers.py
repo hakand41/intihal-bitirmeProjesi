@@ -83,7 +83,7 @@ def highlight_texts(t1, t2):
         apply_char_highlighting(t2, spans2, colors)
     )
 
-def highlight_with_difflib(t1: str, t2: str, min_len: int = 20):
+def highlight_with_difflib(t1: str, t2: str, min_len: int = 100):
     """
     t1 ve t2 üzerinde SequenceMatcher kullanarak en az `min_len`
     uzunluğundaki eşleşen blokları boyar.
@@ -99,3 +99,15 @@ def highlight_with_difflib(t1: str, t2: str, min_len: int = 20):
     h1 = apply_char_highlighting(t1, spans1, colors)
     h2 = apply_char_highlighting(t2, spans2, colors)
     return h1, h2
+
+def get_difflib_spans(t1: str, t2: str, min_len: int = 30):
+    """
+    SequenceMatcher.get_matching_blocks() ile hızlıca eşleşen blokları döner.
+    """
+    matcher = SequenceMatcher(None, t1, t2, autojunk=False)
+    spans1, spans2 = [], []
+    for block in matcher.get_matching_blocks():
+        if block.size >= min_len:
+            spans1.append((block.a, block.size))
+            spans2.append((block.b, block.size))
+    return spans1, spans2
