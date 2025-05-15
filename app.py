@@ -2,10 +2,10 @@ from flask import Flask, request, jsonify, render_template, abort
 from config import UPLOAD_FOLDER
 from upload import process_and_save_file
 from compare import perform_comparison, get_content_info
+from helpers import _strip_cleaned_suffix
 from helpers import highlight_char_spans, read_text, highlight_texts, highlight_with_difflib, get_difflib_spans
 from db_utils import get_db_connection
 from flask_cors import CORS
-
 import os
 import time
 import datetime
@@ -14,10 +14,9 @@ import threading
 import webbrowser
 
 app = Flask(__name__, template_folder='templates')
+CORS(app, origins=["http://localhost:5173"])
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 VIEW_PROCS: dict[str, subprocess.Popen] = {}
 
@@ -211,7 +210,6 @@ def jplag_view():
 def compare_json():
     data = request.get_json(force=True)
 
-    # Gerekli alanlar (sim artık BenzerlikOrani’dan geliyor)
     required = ('KullaniciAdi1', 'KullaniciAdi2', 'Dosya1', 'Dosya2', 'BenzerlikOrani')
     for key in required:
         if key not in data:
@@ -221,41 +219,48 @@ def compare_json():
     u2 = data['KullaniciAdi2']
     p1 = data['Dosya1']
     p2 = data['Dosya2']
+
     try:
         sim = float(data['BenzerlikOrani'])
     except (TypeError, ValueError):
         abort(400, "'BenzerlikOrani' sayısal bir değer olmalı.")
 
-    # Dosya varlık kontrolü
     if not os.path.isfile(p1) or not os.path.isfile(p2):
         missing = p1 if not os.path.isfile(p1) else p2
         abort(404, f"Dosya bulunamadı: {missing}")
 
-    # Karşılaştırma süresi ölçümü
     start_time = time.time()
 
-    # Metinleri oku
     raw1 = read_text(p1)
     raw2 = read_text(p2)
 
-    # Eşleşen blokları hızlıca al
-    spans1, spans2 = get_difflib_spans(raw1, raw2, min_len=30)
+    spans1, spans2 = get_difflib_spans(raw1, raw2, min_len=25)
 
-    # Kelime setleri
     words1 = raw1.split()
     words2 = raw2.split()
     set1, set2 = set(words1), set(words2)
 
+    # ✅ Eşleşen kelimeleri logla
+    matching_words = set1 & set2
+    print(f"[LOG] Eşleşen kelimeler ({len(matching_words)}): {matching_words}")
+
+    # ✅ Eşleşen blokları logla
+    print(f"[LOG] Eşleşen bloklar spans1: {spans1}")
+    print(f"[LOG] Eşleşen bloklar spans2: {spans2}")
+
     result = {
+        "text1": raw1.replace('\n', '<br>'),
+        "text2": raw2.replace('\n', '<br>'),
         "user1": u1,
         "user2": u2,
         "similarity": sim,
+        "matchingWords": sorted(list(set1 & set2)),
         "totalWords1": len(words1),
         "totalWords2": len(words2),
-        "matchingWordCount": len(set1 & set2),
+        "matchingWordCount": len(matching_words),
         "uniqueWords1": len(set1 - set2),
         "uniqueWords2": len(set2 - set1),
-        "matchSpans": [
+        "matchSpans": [ 
             {"start1": s1, "length": l1, "start2": s2, "length": l2}
             for (s1, l1), (s2, l2) in zip(spans1, spans2)
         ],
@@ -265,6 +270,7 @@ def compare_json():
     }
 
     return jsonify(result), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)

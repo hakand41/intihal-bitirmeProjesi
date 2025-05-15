@@ -111,3 +111,16 @@ def get_difflib_spans(t1: str, t2: str, min_len: int = 30):
             spans1.append((block.a, block.size))
             spans2.append((block.b, block.size))
     return spans1, spans2
+
+def _strip_cleaned_suffix(path):
+    """
+    Eğer path "_cleaned.txt" veya "_cleaned.docx" ile bitiyorsa,
+    orijinal dosya adına dönüştürür.
+    """
+    if path.endswith('_cleaned.txt'):
+        # "tasarim_raporu.docx_cleaned.txt" -> "tasarim_raporu.docx"
+        return path[:-len('_cleaned.txt')]
+    if path.endswith('_cleaned.docx'):
+        # "tasarim_raporu_cleaned.docx" -> "tasarim_raporu.docx"
+        return path[:-len('_cleaned.docx')] + '.docx'
+    return path
