@@ -14,7 +14,7 @@ import threading
 import webbrowser
 
 app = Flask(__name__, template_folder='templates')
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, origins=["http://localhost:5173", "https://test1.bitirme-intihal.xyz"])
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
