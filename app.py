@@ -381,7 +381,7 @@ def jplag_view_route():
         return jsonify({"error": f"Rapor zip dosyası bulunamadı: {zip_path}"}), 500
 
     port = 2999 
-    jar_path  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "jplag-6.0.0-jar-with-dependencies.jar")
+    jar_path  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "jplag-6.1.0-jar-with-dependencies.jar")
     
     if not os.path.isfile(jar_path):
         current_app.logger.error(f"JPlag JAR not found at {jar_path}")
