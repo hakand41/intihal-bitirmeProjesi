@@ -18,6 +18,7 @@ import subprocess
 import threading
 import webbrowser
 import uuid
+import re
 import json
 import logging
 
@@ -127,7 +128,8 @@ def upload_file_route():
         conn.commit()
         conn.close()
 
-        user_folder = os.path.join(app.config['UPLOAD_FOLDER'], str(content_id), ad_soyad) 
+        safe_baslik = re.sub(r'[^\w\s-]', '', baslik).strip()
+        user_folder = os.path.join(app.config['UPLOAD_FOLDER'], safe_baslik, ad_soyad)
         os.makedirs(user_folder, exist_ok=True)
 
         original_path = os.path.join(user_folder, uploaded_file.filename)
@@ -381,7 +383,7 @@ def jplag_view_route():
         return jsonify({"error": f"Rapor zip dosyası bulunamadı: {zip_path}"}), 500
 
     port = 2999 
-    jar_path  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "jplag-6.0.0-jar-with-dependencies.jar")
+    jar_path  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "jplag-6.1.0-jar-with-dependencies.jar")
     
     if not os.path.isfile(jar_path):
         current_app.logger.error(f"JPlag JAR not found at {jar_path}")

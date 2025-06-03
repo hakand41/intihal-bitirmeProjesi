@@ -96,7 +96,7 @@ def run_jplag_batch(source_folder, language):
     job_id = str(uuid.uuid4())
     result_path = os.path.join("results", job_id)
     cmd = [
-        "java", "-jar", "./jplag-6.0.0-jar-with-dependencies.jar",
+        "java", "-jar", "./jplag-6.1.0-jar-with-dependencies.jar",
         source_folder,
         "-l", language,
         "-M", "RUN",

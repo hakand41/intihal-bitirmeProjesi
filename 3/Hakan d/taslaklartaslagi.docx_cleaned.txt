@@ -1,0 +1,629 @@
+BÖLÜM 1: GİRİŞ
+
+bölümde dijitalleşmenin etkileriyle birlikte akademik metinlerin orijinalliğini koruma ihtiyacından bağlamda geliştirilen projeden kısaca bahsedilecektir projenin amacı kapsamı özgün değeri intihalin önlenmesi süreci detaylandırılacaktır
+
+genel bilgiler
+
+dijitalleşmenin hızla yaygınlaşması bilgiye erişimi kolaylaştırmış akademik çalışmalarda geniş bir bilgi havuzu sunmuştur ancak durum intihal riskini artırmış akademik etik ihlallerini önlemek yeni yöntemler geliştirilmesini gerekli kılmıştır akademik metinlerin orijinalliğini korumak eğitim kurumlarının araştırmacıların önemli hedeflerinden biridir intihali önlemek kullanılan teknolojik araçlar yalnızca bireysel haksızlıkları önlemekle kalmayıp öğrencilerin özgün düşünme becerilerini geliştirmeye katkı sunar
+
+proje akademik metinlerin birbiriyle benzerlik analizini yapan kullanıcı dostu eğitim odaklı bir araç geliştirmeyi amaçlamaktadır geliştirilecek sistem ödev tez proje dosyaların sisteme yüklenerek birbirleriyle karşılaştırılmasını benzerlik oranlarının hesaplanmasını sağlayacaktır
+
+akademik intihal tanımı etkileri korunma yolları
+
+dijital ortamların yaygınlaşması akademik çalışmalarda intihal riskini artırmıştır akademik etik ihlallerinin önlenmesi uygun yöntemlerin teknolojilerin geliştirilmesi büyük bir önem taşır özellikle grup çalışmaları durumlarda ödevlerin benzerlik oranlarının öğretim görevlileri tarafından manuel olarak kontrol edilmesi zaman alıcı hatalara açık bir süreçtir durum etkili sistematik bir çözüm ihtiyacını doğurmuştur intihalin önlenmesi yalnızca bireysel etik hatalarını engellemekle kalmaz aynı zamanda öğrencilerin özgün düşünme yazma becerilerinin geliştirilmesine olanak tanır
+
+problem tanımı
+
+akademik metinlerin orijinalliğini koruma amacıyla geliştirilen ticari intihal tespit araçları örneğin turnitin ithenticate genellikle bire karşılaştırmalar yapmaktadır geniş bir kullanıcı tabanı yüksek maliyetli çözümler sunmaktadır bunun sonucunda özellikle sınıf içi ödev tez çalışmaları senaryolarda aynı öğrenci grubu içinde belgelerin birbiriyle olan benzerliğini tespit etmek eğitim kurumları karmaşık maliyetli bir süreç haline gelmektedir
+
+örneğin bir üniversite sınıfında yapay zekâ uygulamaları dersi kapsamında öğrenciye aynı konu başlığı verilerek bireysel bir rapor hazırlamaları istenmiştir öğrenciler raporlarını teslim ettiğinde öğretim görevlisinin raporu birbirleriyle karşılaştırarak benzerlik oranlarını manuel olarak kontrol etmesi gerekmektedir mevcut ticari yazılımlar genellikle tür bir çoka karşılaştırma gereksinimini desteklememekte öğretim görevlisi açısından zaman alıcı bir süreç doğurmaktadır ayrıca raporların yalnızca belirli bölümlerinde yüksek düzeyde benzerlik bulunabileceği bölümlerin ayrıntılı bir şekilde tespit edilmesi gerekmektedir
+
+benzer şekilde tez çalışmaları grup projeleri süreçlerde farklı ekipler arasında içerik paylaşımı intihal olup olmadığını tespit etmek mevcut araçların sınırlı işlevselliği nedeniyle zorluk yaratmaktadır örneğin bir tez çalışmasının literatür inceleme bölümü bir diğer tezle büyük ölçüde örtüşüyorsa durumun hangi bölümlerde gerçekleştiği manuel inceleme gerektirebilir
+
+projenin temel amacı tür eksiklikleri gidermek eğitim kurumlarının özel ihtiyaçlarına uygun kapsamlı bir intihal tespit sistemi sunmaktır sistem aynı grup içinde birden fazla belge arasında benzerlik tespitini mümkün kılarken kullanıcıların analiz sürecinde hangi bölümlerin benzerlik gösterdiğini detaylı raporlarla görmesini sağlayacaktır
+
+projenin amacı özgün değeri
+
+projenin temel amacı akademik belgelerin birbiriyle benzerliklerini analiz eden intihal olasılığını değerlendiren bir yazılım geliştirmektir kapsamda geliştirilecek sistem metin tabanlı analiz yaklaşımını benimseyerek kullanıcıların dosya formatı sınırlamalarını ortadan kaldırmayı esnek bir çözüm sunmayı hedeflemektedir
+
+projenin özgün değeri mevcut intihal tespit araçlarının sınırlamalarını aşarak özellikle çoka analiz senaryolarında etkili kapsamlı bir çözüm sunmasında yatmaktadır literatürdeki mevcut araçlar genellikle bire bir karşılaştırmalara odaklanmış olup belgelerin birbirleriyle olan benzerliğini analiz etme konusunda eksik kalmaktadır
+
+proje kapsamında hedeflenen başlıca işlevler şunlardır
+
+belgeler arasında çoka eşleşme analizi projenin önemli özelliklerinden sisteme yüklenen metinlerin birbiriyle karşılaştırılmasını sağlamasıdır mevcut ticari yazılımların genellikle bire bir bire karşılaştırma yapabildiği göz önünde bulundurulduğunda sistem grup ödevleri tez çalışmaları birden fazla öğrencinin aynı konu üzerinde çalıştığı akademik projelerde kapsamlı bir değerlendirme imkânı sunar örneğin bir sınıfta teslim edilen ödevler arasında çoka karşılaştırma yapılarak hangi belgelerin yüksek oranda benzerlik gösterdiği belirlenir bununla birlikte sistem yalnızca benzerlik oranlarını hesaplamakla kalmaz aynı zamanda hangi bölümlerin eşleştiğini ayrıntılı olarak gösterir durum öğretim görevlilerinin zamanını verimli kullanmasına olanak tanırken öğrenciler arasında yapılan iş birliğinin örneğin kaynak paylaşımı kopyalama sınırlarını net bir şekilde ortaya koyar sistem ayrıca benzerlik analizini gerçekleştirmek doğal dil işleme nlp tekniklerinden yararlanarak yalnızca yüzeysel eşleşmeleri değil anlam açısından örtüşen ifadeleri tespit eder
+
+detaylı raporlama görselleştirme kullanıcılar sistemin sunduğu detaylı raporlar görselleştirme araçları sayesinde metinler arasındaki benzerlik oranlarını eşleşen bölümleri kolayca değerlendirebilir görselleştirme özelliği eşleşen bölümlerin renk kodlamalarıyla vurgulanmasını farklı belgeler arasındaki bağlantıların grafiksel olarak gösterilmesini içerir örneğin iki metin arasında benzerlik tespit edildiğinde sistem benzerliği interaktif bir formatta kullanıcıya sunar eşleşen bölümler yan yana karşılaştırmalı olarak görüntülenebilir farklı belgeler arasındaki benzerlik oranları bir ısı haritası grafik üzerinde gösterilebilir görselleştirme araçları kullanıcıların raporlardan hızlı doğru sonuçlar çıkarmasını sağlar ayrıca raporların indirilebilir pdf formatında sunulması analiz geçmişine erişim imkânı uzun vadeli proje takibi açısından büyük kolaylık sağlar
+
+düşük maliyet açık kaynak yapı proje ticari yazılımlara alternatif olarak açık kaynaklı düşük maliyetli bir çözüm sunmayı hedeflemektedir özellik özellikle küçük ölçekli eğitim kurumları önemlidir
+
+eğitim odaklı yaklaşım intihali tespit etmenin ötesinde öğrencilere akademik etik bilincini aşılayarak özgün yazma alışkanlıklarını geliştirmelerine katkı sunacaktır
+
+sistem düşük maliyeti kullanıcı dostu arayüzü kapsamlı analiz kapasitesiyle bireysel kurumsal düzeyde intihal tespiti önlenmesi etkili bir araç olacaktır şekil projenin use case diyagramı gösterilmiştir
+
+şekil use case diyagramı
+
+aşağıda şekil şekil şekil uygulamanın arayüzünden admin öğrenci öğretmen panellerinden görsellere yer verilmiştir
+
+şekil admin paneli
+
+şekil öğretmen paneli
+
+şekil öğrenci paneli
+
+projenin yaygın etkisi
+
+proje üniversitelerde diğer eğitim kurumlarında ödev proje tez akademik çalışmaların değerlendirme süreçlerini verimli hale getirmeyi hedeflemektedir özellikle aynı sınıfta teslim edilen grup bireysel ödevlerin çoka eşleştirilerek analiz edilmesi intihal oranlarının azaltılmasında önemli bir rol oynayacaktır sistem akademik çalışmaların özgünlüğünü teşvik ederek öğrenciler öğretim üyeleri güvenilir bir ortam sağlayacaktır
+
+proje eğitim kurumlarının yanı sıra küçük orta ölçekli işletmeler kobi ler araştırma merkezleri özel sektör kuruluşlarında kullanım potansiyeline sahiptir örneğin şirket içi raporların teknik dokümanların sunumların benzerlik analizi yapılabilir sayede fikirlerin özgünlüğü korunabilir
+
+sistem akademik etik bilincini desteklemekte öğrencilerin özgün içerik üretme becerilerini geliştirmelerine yardımcı olmaktadır durum uzun vadede nitelikli araştırmacıların etik değerleri benimsemiş bireylerin yetişmesine olanak tanır öğretim üyelerinin üzerindeki manuel kontrol yükünü azaltarak onların eğitim rehberlik faaliyetlerine fazla odaklanmalarını sağlar
+
+standartlar
+
+çalışmada kullanılan standartlar aşağıda belirtilmiştir
+
+ıso ıec software product quality requirements and evaluation square
+
+ıso ıec yazılım ürününün kalite özelliklerini basit uygulanabilir bir şekilde değerlendirmek kullanılan bir standarttır yazılımın işlevsellik performans kullanılabilirlik güvenilirlik taşınabilirlik temel kriterleri göz önünde bulundurur proje kapsamında standarttan yalnızca temel başlıklar örneğin işlevsellik kullanılabilirlik dikkate alınacaktır
+
+ıeee software verification and validation
+
+ıeee yazılım doğrulama geçerliliği ilgili bir standarttır standart yazılımın belirtilen gereksinimlere uygun olup olmadığının doğrulanması son ürünün doğru işlevleri yerine getirdiğinin değerlendirilmesi gereklidir proje kapsamında standart dikkate alınacaktır
+
+ıso ıec software engineering product quality
+
+ıso ıec yazılım ürünlerinin kalite özelliklerini tanımlar standart yazılımın işlevsellik kullanılabilirlik verimlilik güvenlik özelliklerini değerlendirir proje kapsamında standart dikkate alınacaktır
+
+ıeee software testing documentation
+
+ıeee yazılım test süreçlerinde kullanılabilecek basit bir belge formatı sunar proje kapsamında yazılımın test senaryoları hata kayıtları standarda uygun olarak dokümante edilecektir böylece test süreçleri sistematik bir şekilde gerçekleştirilecektir
+
+iş zaman çizelgesi
+
+tablo iş zaman çizelgesi tablosu
+
+tablo iş zaman çizelgesi görülmektedir iş paketlerinin içerikleri aşağıdaki gibidir
+
+iş paketi proje hazırlığı planlama ay
+
+literatür araştırması yapılarak mevcut intihal tespit araçları yöntemleri incelenecek teknik gereksinimler kullanılacak teknolojiler flask vue js python altyapı ihtiyaçları belirlenecek proje planı iş paketleri detaylandırılacak
+
+iş paketi veri tabanı tasarımı altyapı geliştirme ay
+
+dosyalar kullanıcılar eşleşmeler veri yapıları tanımlanarak veri tabanı şeması tasarlanacak flask framework kullanılarak temel apı altyapısı oluşturulacak crud işlemleri geliştirilecek
+
+iş paketi metin karşılaştırma motorunun geliştirilmesi ay
+
+python metin karşılaştırma algoritması geliştirilecek istenmeyen kısımlar kapak sayfası içerik önsöz çıkarılacak metin analizi yöntemleri uygulanarak benzerlik oranları hesaplanacak eşleşen bölümler detaylı şekilde analiz edilecek
+
+iş paketi arayüz geliştirme ay
+
+vue js kullanıcı giriş ekranı dosya yükleme rapor görüntüleme modülleri tasarlanacak kullanıcı deneyimi iyileştirilecek flask apı entegrasyon sağlanacak kullanıcıların kolayca dosya yükleyip rapor alabilmesi gerekli altyapı tamamlanacak
+
+iş paketi raporlama görselleştirme modülü ay
+
+python görselleştirme kütüphaneleri matplotlib plotly seaborn entegre edilerek metin benzerlik oranları grafiklerle görselleştirilecek elde edilen raporlar arayüzde detaylı olarak sunulacak kullanıcılar indirilebilir hale getirilecek
+
+iş paketi test optimizasyon ay
+
+yazılımın birim entegrasyon testleri yapılacak algoritmalar büyük dosyalar optimize edilecek yazılım performansı iyileştirilecek süreçlerin işleyişine yönelik test raporları hazırlanacak
+
+iş paketi proje sonlandırma dokümantasyon ay
+
+kullanım kılavuzu teknik dokümantasyon hazırlanacak proje raporu oluşturulacak teslim süreci gerekli hazırlıklar tamamlanacak proje çıktıları detaylı bir şekilde sunuma uygun hale getirilecek
+
+BÖLÜM 2: ÖNCEKİ ÇALIŞMALARIN ARAŞTIRILMASI
+
+bölümde intihal tespiti alanında yaygın olarak kullanılan çeşitli araçlar incelenmektedir araçların özellikleri avantajları dezavantajları kullanım alanları detaylı bir şekilde ele alınarak farklı ihtiyaçlara yönelik uygun çözümlerin belirlenmesi amaçlanmaktadır inceleme ticari açık kaynaklı araçları kapsamakta özellikle çoka analizler karmaşık senaryolar araçların yeterliliği değerlendirilmektedir
+
+literatürdeki benzer çalışmalar
+
+intihal tespiti akademik profesyonel dünyada önemli bir konudur alanda farklı amaçlar geliştirilmiş çeşitli ticari açık kaynak araçlar mevcuttur özellikle çoka analizler grup ödevleri karmaşık senaryolar tespit aracının kapsamlı özelliklere sahip olması gerekir aşağıda yaygın kullanılan intihal tespit araçlarının detaylı incelemesi sunulmuştur
+
+ithenticate
+
+ithenticate bilimsel makaleler profesyonel yayınlar yüksek kaliteli akademik içerikler geliştirilen üst düzey bir intihal kontrol sistemidir yayınlanmış makaleler konferans bildirileri bilimsel veri tabanları kaynakları tarayarak içeriklerin özgünlük durumunu yüksek bir doğrulukla analiz eder akademik yayınevleri araştırmacılar özel çözümler sunan ithenticate özellikle bilimsel makalelerin yayımlanmadan önceki orijinallik kontrollerinde kritik bir rol oynar kullanıcılarına sağladığı detaylı orijinallik raporları sayesinde içeriklerin güvenilirliğini artırır intihal riskini minimize eder ithenticate tezler bilimsel makaleler profesyonel yayınlar üzerinde çalışan araştırmacılar ideal bir araçtır platformlar arası iş birliğini destekleyen yapısı kullanıcı deneyimini güçlendirmektedir https www ithenticate com
+
+avantajları yüksek doğruluk bilimsel yayın desteği uluslararası standartlara uygun raporlama
+
+dezavantajları yüksek maliyet bireysel kullanıcılar uygun değil grup ödevleri çoka analizlerde yetersizlik
+
+kullanım alanları akademik yayınlar bilimsel makaleler yayınevleri
+
+turnitin
+
+turnitin dünya çapında akademisyenler eğitim kurumları tarafından tercih edilen güvenilir bir intihal tespit platformudur geniş kapsamlı bir akademik veri tabanına sahip olan turnitin kullanıcıların içeriklerini kitaplar makaleler tezler diğer akademik çalışmalarla karşılaştırarak intihal oranını yüksek doğrulukla tespit edebilir turnitin in sunduğu önemli özelliklerden orijinallik raporudur rapor belgelerde bulunan benzerlik oranlarını detaylı bir şekilde analiz ederek içeriklerin özgünlük seviyesini değerlendirmeye yardımcı olur ayrıca sistemin güçlü algoritmaları sayesinde özellikle akademik standartların korunmasına büyük katkı sağlanır üniversiteler akademisyenler araştırmacılar vazgeçilmez bir araç olan turnitin aynı zamanda akademik dürüstlük etik çalışmaların desteklenmesine önemli bir rol oynamaktadır https tr turnitin com
+
+avantajları geniş veri tabanı detaylı raporlama kullanıcı dostu arayüz
+
+dezavantajları yüksek maliyet çoka analiz eksikliği
+
+kullanım alanları akademik kurumlar üniversiteler okullar
+
+plagscan
+
+plagscan düşük maliyetli açık kaynak bir intihal tespit aracıdır belirli bir düzeye kadar etkili bir çözüm sunmasına rağmen gelişmiş analiz gereksinimlerini karşılamada yetersizdir https www plagscan com
+
+avantajları düşük maliyetli lisans modeli çevrimdışı belgelerle karşılaştırma
+
+dezavantajları çoka analiz eksikliği veri tabanı kısıtlamaları
+
+kullanım alanları eğitim kurumları küçük işletmeler bireysel kullanıcılar
+
+intihal net
+
+intihal net türkçe akademik çalışmalara odaklanmış yerli bir intihal tespit aracıdır türk üniversiteleri akademisyenler araştırmacılar tarafından yaygın bir şekilde kullanılan araç türkçe içeriklerin özgünlük kontrollerinde oldukça başarılıdır intihal net akademik bilimsel raporlamalar kapsamlı bir tarama sistemi sunar kullanıcı dostu arayüzü sayesinde kolay bir kullanım deneyimi sağlar platform özellikle türkçe tezler makaleler diğer akademik çalışmalar üzerinde çalışan araştırmacılar idealdir türkçe kaynaklara erişim sağlama konusundaki başarısı intihal net yerli akademik çalışmalar vazgeçilmez bir araç haline getirmiştir ayrıca kullanıcılara detaylı raporlar sunarak içeriklerin intihal oranını doğru bir şekilde analiz eder araştırma süreçlerinin verimliliğini artırır https intihal net
+
+avantajları türkçe dil desteği kullanıcı dostu arayüz türkçe kaynaklara erişim detaylı raporlama
+
+dezavantajları dil desteği sınırlaması sadece türkçe veri tabanı kapsamının darlığı uluslararası kaynaklara sınırlı erişim çoka analiz eksikliği
+
+kullanım alanları türkiye deki akademik kurumlar türkçe içerik üretenler
+
+plagiarismchecker
+
+plagiarismchecker tamamen ücretsiz olması kullanımı kolay arayüzüyle bireysel kullanıcılar pratik bir intihal tespit aracıdır özellikle kısa metinlerin hızlı bir şekilde analiz edilmesine olanak tanıyan araç web tabanlı çalıştığı herhangi bir kurulum gerektirmez kopyala yapıştır yöntemiyle çalışan plagiarismchecker metinlerin temel düzeyde taranmasını sağlar kullanıcılarına kısa sürede sonuç sunar sağladığı temel raporlarla kullanıcıların içeriklerinin özgünlük durumunu anlamalarına yardımcı olur blog yazıları kısa makaleler ödevler basit içeriklerde etkili bir şekilde çalışan araç karmaşık akademik metinler yerine küçük bireysel çalışmalar idealdir özellikle öğrenciler bireysel yazarlar arasında popülerdir https plagiarismdetector net
+
+avantajları tamamen ücretsiz kullanımı kolay arayüz hızlı analiz kurulum gerektirmemesi
+
+dezavantajları temel düzeyde tarama karmaşık analizlerde yetersizlik kapsamlı veri tabanı
+
+kullanım alanları bireysel kullanıcılar öğrenciler blog yazarları kısa metinler
+
+tablo çalışmaların birbirleriyle karşılaştırıldığı tablo verilmiştir
+
+tablo araç karşılaştırma tablosu
+
+mevcut çalışmaların karşılaştırılması eksikleri
+
+mevcut araçlar bire bir belge karşılaştırmasında etkili çözümler sunarken belgelerin birbirleriyle çoka eşleşme yöntemiyle analiz edilmesi karmaşık ihtiyaçları karşılamakta yetersiz kalmaktadır özellikle sınıf düzeyinde yapılan grup ödevlerinde öğrencilerin aynı konu üzerinde çalıştığı bireysel ödevlerde belgeler arasındaki benzerliğin kapsamlı bir şekilde analiz edilmesi gerekmektedir ancak mevcut araçların çoğu tür gereksinimlere odaklanmamıştır
+
+BÖLÜM 3: YÖNTEM VE TASARIM
+
+bölümde projenin tasarım geliştirme süreci gereksinim analizinden sistem mimarisine metin analizi yöntemlerinden test süreçlerine kadar detaylarıyla anlatılmaktadır riskler çözümleri beklenen faydalar ele alınmıştır
+
+tasarım ihtiyaçları
+
+projenin başarılı bir şekilde hayata geçirilmesi çeşitli tasarım ihtiyaçları dikkate alınmıştır ihtiyaçlar kullanıcı deneyimini teknolojik altyapıyı maliyet etkinliğini sistem entegrasyonunu uyumluluğunu kapsamaktadır
+
+kullanıcı ihtiyaç analizi sistemin temel amacı ödev proje diğer akademik içeriklerin özgünlüğünü analiz etmektir nedenle kullanıcı odaklı bir tasarım yaklaşımı benimsenmiştir kullanıcı ihtiyaç analizi sonucunda aşağıdaki gereksinimler belirlenmiştir
+
+kullanıcı dostu arayüz sistem seviyedeki kullanıcının kolayca anlayabileceği kullanabileceği sezgisel bir arayüze sahip olmalıdır karmaşık menülerden teknik terimlerden kaçınılarak basit anlaşılır bir dil kullanılmalıdır
+
+belge yükleme yönetimi kullanıcılar farklı formatlardaki belgelerini örneğin pdf doc docx kolayca yükleyebilmeli yönetebilmelidir yükleme süreci hızlı güvenli olmalıdır
+
+karşılaştırma başlatma kullanıcılar yükledikleri belgeler arasında karşılaştırma işlemini basit bir şekilde başlatabilmelidir gerekirse karşılaştırma parametrelerini örneğin benzerlik eşiği ayarlayabilmelidir
+
+detaylı raporlar sistem analiz sonuçlarını detaylı anlaşılır raporlar halinde sunmalıdır raporlar benzerlik oranlarını eşleşen metin bölümlerini diğer ilgili bilgileri içermelidir görselleştirmeler grafikler tablolar raporun anlaşılırlığını artırmalıdır
+
+görselleştirme analiz sonuçları grafikler tablolar aracılığıyla görselleştirilerek kullanıcıların veriyi kolay yorumlaması sağlanmalıdır benzerlik oranları eşleşen metin bölümleri diğer önemli veriler görsel olarak sunulmalıdır
+
+hızlı geri bildirim sistem analiz sonuçlarını mümkün olan kısa sürede vermelidir uzun süren analizler kullanıcıya ilerleme durumu hakkında bilgi verilmelidir
+
+genel ihtiyaçların sistemdeki karşılıkları ilgili kullanıcı rolleri aşağıdaki şekil gösterilmiştir
+
+şekil kullanıcı ihtiyaç analizi
+
+teknoloji gereksinimleri sistemin geliştirilmesinde performans ölçeklenebilirlik güvenlik kullanıcı deneyimi faktörler göz önünde bulundurularak bir dizi teknoloji seçilmiştir kullanılan temel teknolojiler seçim nedenleri aşağıda detaylandırılmıştır
+
+ön yüz frontend vue js
+
+kullanıcı etkileşimini yönetmek dinamik bir arayüz oluşturmak javascript tabanlı bir framework olan vue js tercih edilmiştir
+
+arka yüz backend flask python
+
+apı uç noktalarını oluşturmak veri işleme süreçlerini yönetmek veri tabanı iletişim kurmak python tabanlı hafif bir web framework olan flask kullanılmıştır
+
+veri tabanı mssql
+
+yüklenen belgelerin analiz sonuçlarının kullanıcı bilgilerinin diğer verilerin güvenli verimli bir şekilde depolanması yönetilmesi microsoft sql server mssql veri tabanı kullanılmıştır
+
+apı testi postman
+
+apı uç noktalarının doğru çalıştığından beklenen yanıtları verdiğinden performans gereksinimlerini karşıladığından emin olmak postman kullanılmıştır
+
+programlama dili python
+
+metin karşılaştırma algoritmalarının geliştirilmesi veri analizi sonuçların görselleştirilmesi python programlama dili kullanılmıştır
+
+sistemin ana hatları
+
+aşağıda verilen şekil istem mimarisinin genel görünümü diyagram sistem bileşenlerinin ön yüz arka yüz veri tabanı vb aralarındaki etkileşimin olduğunu göstermektedir
+
+şekil sistem mimarisi
+
+maliyet gereksinimleri projenin maliyet etkinliği önemli bir öncelik olarak belirlenmiş doğrultuda mümkün olduğunca açık kaynak teknolojiler tercih edilmiştir flask arka yüz vue js ön yüz python ilgili kütüphaneler metin analizi temel bileşenler açık kaynaklı ücretsizdir ancak mssql veri tabanı uygun bir lisanslama bütçesi ayrılması gerekmektedir mssql in farklı sürümleri lisanslama seçenekleri bulunmaktadır
+
+entegrasyon uyum gereksinimleri arayüz arka yüz iletişimi apı lerin aracılığıyla sağlanacaktır postman test edilen apı lerin entegrasyonu flask arka yüz yapısına vue js ön yüz yapısına uygun şekilde yapılacaktır
+
+tasarım kullanılacak sistem alt sistemler
+
+ön yüz frontend vue js
+
+vue js in bileşen tabanlı yapısı kodun yeniden kullanılabilirliğini artırır geliştirme sürecini hızlandırır ayrıca performansı yüksektir zengin bir ekosisteme sahiptir tek sayfa uygulamaları spa geliştirmek idealdir kullanıcı deneyimini önemli ölçüde iyileştirir proje özelinde dosya yükleme analiz sonuçlarının görselleştirilmesi kullanıcı etkileşimlerinin yönetimi modüller vue js geliştirilecektir aşağıda şekil yönlendirme mekanizmasından bir görsel verilmiştir
+
+arka yüz backend flask python
+
+flask ın minimalist yapısı yüksek performans gerektiren uygulamalar uygundur esnek özelleştirilebilir yapısı sayesinde projenin özel ihtiyaçlarına göre kolayca adapte edilebilir python un güçlü kütüphaneleriyle örneğin metin işleme veri analizi entegrasyonu kolaydır proje dosya yükleme analiz başlatma sonuçları veri tabanından alma ön yüze gönderme işlemler flask yönetilecektir
+
+veri tabanı mssql
+
+mssql proje kapsamında yüksek performanslı veri depolama işleme ihtiyaçlarını karşılamak seçilmiştir veri tabanı yüklenen belgeleri karşılaştırma sonuçlarını kullanıcı erişim bilgilerini görselleştirme gerekli istatistikleri depolayacaktır tablolar normalize edilerek veri tutarlılığı sağlanacak karmaşık sorgular indeksleme yapılacaktır
+
+postman apı testi
+
+postman apı geliştirme test süreçlerini kolaylaştıran güçlü bir araçtır apı istekleri gönderme yanıtları inceleme test senaryoları oluşturma otomatik testler çalıştırma özellikleri sunar proje farklı senaryolar altında apı lerin doğruluğunu performansını güvenliğini test etmek postman kullanılacaktır
+
+python veri işleme
+
+python zengin kütüphane ekosistemi nltk spacy scikit learn matplotlib seaborn plotly vb sayesinde metin işleme doğal dil işleme nlp makine öğrenimi veri görselleştirme alanlarda yaygın olarak kullanılan bir dildir
+
+benzerlik analizi algoritmalarının çalışma prensipleri kullanım senaryoları
+
+metin benzerliği analizi doğal dil işleme nlp metin madenciliği alanlarında önemli bir yer tutmaktadır farklı metinler arasındaki benzerlikleri tespit etmek metin sınıflandırma intihal tespiti arama motoru optimizasyonu içerik öneri sistemleri birçok uygulama gereklidir aşağıda yaygın kullanılan metin benzerliği algoritmalarının çalışma prensipleri kullanım senaryoları açıklanmaktadır
+
+cosine similarity cosine benzerliği metinleri vektörler olarak temsil edip vektörler arasındaki açıyı cosine hesaplayarak benzerliği ölçen bir yöntemdir vektörler metnin içerdiği kelimelerin sıklıkları temsil edilir cosine benzerliği iki metnin yönlerinin birbirine kadar yakın olduğunu paralel olduğunu ölçer benzerliği arasında bir değerle ifade eder cosine similarity belge benzerliği doküman sıralama uygulamalar son derece etkilidir posta sınıflandırma web arama motorları öneri sistemleri metin madenciliği uygulamalarda büyük veri çalışırken yüksek verimlilik sağlar ayrıca uzun metinler anlamlı benzerlikler üzerine odaklanmak gerektiğinde doğru sonuçlar verir yüksek boyutlu veri setlerinde başarılı performans sergileyen bir algoritmadır
+
+monge elkan monge elkan algoritması metin benzerliklerini ölçmek kullanılan güçlü esnek bir yöntemdir algoritma özellikle farklı şekillerde ifade edilen yazım hataları içeren kısa metinlerin karşılaştırılmasında etkili sonuçlar verir monge elkan iki metindeki bir kelimeyi diğer metindeki kelimelerle eşleştirir eşleşmelerin benzerlik skorlarını hesaplar süreçte genellikle başka bir string benzerlik algoritması örneğin levenshtein mesafesi jaro winkler alt algoritma olarak kullanılır bir kelime yüksek benzerlik skoru seçilir skorların ortalaması alınarak iki metin arasındaki genel benzerlik değeri elde edilir algoritmanın belirgin avantajı küçük yazım hatalarına eşanlamlı ifadelerin varlığına karşı toleranslı olmasıdır monge elkan birebir eşleşme aramak yerine yüksek benzerliği seçerek metinler arasındaki anlam bütünlüğünü korur özellikle müşteri veritabanı eşleştirme adres karşılaştırma kısa metinli doğal dil işleme uygulamalarda yaygın olarak kullanılır bununla birlikte monge elkan algoritmasının kullanımında dikkat edilmesi gereken noktalar vardır kullanılan alt algoritmanın seçimi sonuçların doğruluğu üzerinde doğrudan etkilidir örneğin levenshtein mesafesi yazım hatalarına karşı hassasken jaro winkler algoritması kısa metinler üzerinde etkili çalışabilir nedenle monge elkan ın uygun sonuçları vermesi veri türüne karşılaştırma senaryosuna uygun bir alt algoritma seçimi yapılmalıdır
+
+jaro winkler similarity jaro winkler benzerliği özellikle kısa metinler adlar arasındaki benzerliği ölçmek tasarlanmış bir algoritmadır algoritma metinlerdeki karakter benzerliklerini değerlendirir küçük yazım hatalarına duyarlıdır jaro winkler kelimelerdeki karakter sırasındaki benzerliği yer değiştirmeleri dikkate alarak bir skor üretir algoritma uzun metinlerdeki benzerlikleri doğru tespit etmekte zorlanabilir ancak küçük farkları oldukça hassas bir şekilde belirleyebilir jaro winkler özellikle ad eşleştirme yazım hatası düzeltme telefon numarası adres doğrulama uygulamalar etkilidir veri doğrulama spam filtreleme benzer adların tespiti işlemler yaygın olarak tercih edilen bir algoritmadır
+
+sorensen dice coefficient sorensen dice katsayısı iki metin arasındaki benzerliği ölçmek kullanılan bir diğer küme benzerlik algoritmasıdır katsayı iki metnin ortak kelimelerinin sayısının iki metnin toplam kelimeleri karşılaştırılmasıyla hesaplanır sorensen dice katsayısı özellikle metinlerin ortak ögelerinin oranını belirlemek etkilidir sorensen dice coefficient özellikle kısa metinlerde kelime kümesi benzerliği analizi kullanılır metinlerin karşılaştırılması belge öneri sistemleri etiketleme sistemlerinde başarılı sonuçlar elde etmek uygundur ayrıca metinler arasındaki küçük benzerlikleri tespit etmekte oldukça etkili bir algoritmadır algoritma farklı veri yapıları metin türleri kullanım senaryolarına göre değişik performanslar sergileyebilir nedenle doğru algoritmayı seçmek belirli bir kullanım durumu doğru sonuca ulaşabilmek adına son derece önemlidir örneğin tf ıdf genellikle büyük veri setlerinde metinlerin içerik benzerliğini analiz etmek mükemmel bir seçimken levenshtein mesafesi yazım hatası tespiti etkili olur cosine similarity uzun metinlerdeki anlamlı benzerlikleri tespit etmek ideal bir yöntemken jaro winkler algoritması kısa metinlerdeki yazım hatalarını doğru şekilde belirleyebilir
+
+jaccard ındex jaccard benzerliği iki küme arasındaki ortak öğelerin oranını ölçer algoritma metinleri kelime kümeleri olarak kabul eder iki küme arasındaki benzerliği küme kesişimi birleşiminin oranı olarak hesaplar jaccard ındex genellikle kelimeler arasındaki ortaklıkları metinler arasındaki yapısal benzerlikleri değerlendiren bir metottur jaccard ındex özellikle kısa metinler kelime kümesi analizleri oldukça etkili bir algoritmadır metin madenciliği veritabanı sorgulama alanlarda etiketleme doküman eşleştirme kümelenme clustering işlemler yaygın bir şekilde kullanılır jaccard özellikle sosyal medya analizleri hashtag analizleri metin analizi ortamlarda metinlerin içerik benzerliklerini iyi anlamak faydalıdır
+
+tf ıdf term frequency ınverse document frequency tf ıdf bir kelimenin belirli bir metin belge içinde kadar önemli olduğunu belirlemek kullanılan istatistiksel bir yöntemdir iki temel bileşenden oluşur term frequency tf kelimenin bir metin içindeki sıklığını ölçerken ınverse document frequency ıdf kelimenin belgelerde kadar yaygın olduğunu değerlendiren bir parametredir iki bileşen birleştirilerek kelimenin metin içindeki gerçek önem derecesi hesaplanır yüksek bir tf ıdf değeri kelimenin sadece belirli bir metinde sıkça geçtiğini değil aynı zamanda metinde özgün anlamlı bir yere sahip olduğunu gösterir
+
+tf ıdf özellikle büyük veri setlerinde metin madenciliği içerik analizi uygulamalarda yaygın olarak kullanılır arama motorları doküman sınıflandırma belge öneri sistemleri alanlarda oldukça etkilidir yöntem metinlerin içeriğine dair önemli kelimeleri çıkarmada oldukça başarılıdır ayrıca algoritma sık kullanılan kelimelerin durak kelimelerin stop words metin analizi üzerinde olumsuz bir etkisi olmasını engeller
+
+şekil tf ıdf formülü görselleştirilmiştir
+
+şekil tf ıdf formülü
+
+levenshtein distance levenshtein distance iki metin arasında yapılan değişiklikleri ekleme silme değiştirme ölçer yöntem metinlerin harf düzeyinde kadar farklı olduğunu değerlendirmek kullanılabilir aşağıdaki denklem şekil formül örnek verilmiştir
+
+denklem levenshtein distance formülü
+
+şekil levenshtein distance örneği
+
+algoritmaların karşılaştırılması
+
+farklı metin benzerliği algoritmalarının performansını karşılaştırmak hangi algoritmanın belirli bir uygulama uygun olduğunu belirlemek açısından büyük önem taşır bölümde tf ıdf jaccard ındex cosine similarity jaro winkler similarity sorensen dice coefficient algoritmalarının metinler üzerinde benzerlik oranı tespit edilmiştir ayrıca test aşamasında farklı metinler kullanılarak hangi algoritmaların hangi tür metin verileri kullanım senaryoları etkili olduğunu tespit edilmiştir test aşamasında kendi programımız kullanılmış sonuçlar aşağıda verilmiştir
+
+test şekil verilen test girdisi sonuçları şekil gösterilmiştir
+
+şekil test girdisi
+
+şekil test sonucu
+
+test şekil verilen test girdisi sonuçları şekil gösterilmiştir
+
+şekil test girdisi
+
+şekil test sonucu
+
+test şekil verilen test girdisi sonuçları şekil gösterilmiştir
+
+şekil test girdisi
+
+şekil test sonucu
+
+yöntem
+
+bölümde sistemin geliştirilmesinde izlenen yöntemler kullanılan teknolojiler uygulanan süreçler detaylandırılmaktadır sistem modüler bir yaklaşımla ön yüz arka yüz veri işleme veri tabanı katmanları olarak tasarlanmıştır
+
+flask tabanlı arka yüz geliştirme
+
+sistemin arka yüzü python tabanlı hafif bir web framework olan flask kullanılarak geliştirilmiştir flask ın esnek minimalist yapısı restful apı ler oluşturmak uygun bir zemin sağlamıştır arka yüz geliştirme sürecinden aşağıdaki örnekler verilmiştir
+
+apı uç noktaları aşağıda apı uç noktalarının görevleri aktarılmıştır
+
+post upload kullanıcıların dosyalarını sisteme yüklemesini sağlayan uç noktadır yüklenen dosyalar sunucuda güvenli bir dizine kaydedilir dosya meta verileri ad boyut yüklenme zamanı vb mssql veri tabanına kaydedilir
+
+post compare karşılaştırma işlemini başlatır uç nokta gerekli analiz parametrelerini alır analiz işlemini gerçekleştirmek üzere python modülüne yönlendirir
+
+get results analysis_id belirli bir analiz ıd sine ait sonuçları döndüren uç noktadır sonuçlar veri tabanından alınarak uygun bir formatta json ön yüze iletilir
+
+aşağıda şekil flask uygulamasından uç nokta endpoint örnekleri verilmiştir
+
+şekil flask endpoint
+
+güvenlik sistem güvenliği ön planda tutularak aşağıdaki önlemler alınmıştır
+
+dosya yükleme sırasında yalnızca izin verilen dosya türleri pdf doc docx kabul edilir olası güvenlik açıklarını aza indirir
+
+kullanıcı kimlik doğrulaması jwt json web token tabanlı bir mekanizma kullanılmıştır güvenli ölçeklenebilir bir kimlik doğrulama yöntemi sağlar
+
+performans yüksek performans sağlamak amacıyla aşağıdaki optimizasyonlar yapılmıştır
+
+veritabanı işlemlerini optimize etmek flask sqlalchemy orm kullanılmıştır veritabanı etkileşimlerini verimli hale getirir
+
+python metin analizi
+
+metin tabanlı analiz işlemleri python ilgili kütüphaneler kullanılmıştır analiz süreci adımları içerir
+
+ön işleme metin analizi verilerin hazırlanması amacıyla aşağıdaki işlemler gerçekleştirilir
+
+belgelerden metin çıkarma işlemi python docx kütüphaneleri kullanılmıştır
+
+çıkarılan metinler gereksiz kısımların kapak sayfası özet içindekiler vb filtrelenmesi önceden tanımlanmış anahtar kelimelerle analiz edilir
+
+doğal dil işleme nlp teknikleri uygulanarak nltk spacy kütüphaneleri durak kelimeler stop words temizlenir metin tokenizasyonu yapılır
+
+benzerlik analizi belgeler arasındaki benzerliği ölçmek tf ıdf term frequency ınverse document frequency levenshtein distance jaccard ındex cosine similarity algoritmaları kullanılmıştır
+
+algoritmalar belgelerin farklı yönlerden benzerliğini değerlendirmek birlikte ayrı ayrı kullanılabilir elde edilen sonuçlar eşleşen bölümlerin satır paragraf bazında detaylı analizini içeren bir yapıda raporlanır
+
+sonuçların raporlanması analiz sonuçları python veri görselleştirme kütüphaneleri matplotlib seaborn plotly kullanılarak anlamlı okunabilir raporlar haline getirilir veri tabanında saklanır sonuçlar flask apı aracılığıyla ön yüze iletilerek kullanıcılara sunulur
+
+mssql tabanlı veri depolama
+
+verilerin kalıcı olarak saklanması etkin bir şekilde yönetilmesi microsoft sql server mssql veritabanı kullanılmıştır veritabanı şeması aşağıdaki tabloları içerir
+
+kullanıcılar sistem kullanıcılarının kimlik bilgileri yetkilendirme bilgileri tabloda saklanır
+
+yüklenen dosyalar yüklenen dosyaların meta verileri dosya adı boyutu yükleme tarihi kullanıcı ıd si vb tabloda tutulur
+
+analiz sonuçları analiz işlemine ait benzerlik oranları eşleşen bölümler diğer ilgili veriler benzersiz bir analiz ıd si ilişkilendirilerek tabloda saklanır
+
+şekil veri tabanı diyagramı gösterilmiştir
+
+şekil veri tabanı tablosu
+
+veritabanı performansını optimize etmek aşağıdaki teknikler kullanılmıştır
+
+sık kullanılan sorgularda performansı artırmak uygun indeksler oluşturulmuştur
+
+karmaşık sorguların performansını artırmak veritabanı sunucusundaki yükü azaltmak saklı yordamlar stored procedures kullanılmıştır
+
+vue js frontend geliştirme
+
+kullanıcı dostu etkileşimli bir arayüz oluşturmak vue js framework kullanılmıştır ön yüz geliştirme sürecinde aşağıdaki özellikler uygulanmıştır
+
+dosya yükleme kullanıcıların dosyalarını kolayca yükleyebileceği yükleme durumunu gerçek zamanlı olarak gösteren hata mesajları doğrulama adımlarını içeren bir modül tasarlanmıştır
+
+sonuç görselleştirme analiz sonuçları dinamik grafikler tablolar vurgulanmış eşleşen metin bölümleri görselleştirilerek kullanıcıların sonuçları kolay anlaması sağlanmıştır
+
+apı entegrasyonu arka yüz iletişim kurmak verileri almak axios kütüphanesi kullanılmıştır
+
+aşağıda şekil yönlendirme mekanizmasından bir görsel verilmiştir
+
+şekil vue js yönlendirme
+
+entegrasyon test süreçleri
+
+sistemin bileşenlerinin sorunsuz bir şekilde entegre olduğunu doğru çalıştığını doğrulamak kapsamlı test süreçleri uygulanmıştır süreçler şunlardır
+
+apı testleri postman kullanılarak apı uç noktasının doğruluğu performansı hata durumları test edilmiştir aşağıda şekil apı üzerinden gelen json verilerinin kontrolü gösterilmiştir
+
+şekil postman apı kontrolü
+
+veritabanı testleri veri tabanına yapılan veri yazma okuma işlemlerinin doğruluğu performansı test edilmiştir
+
+kullanıcı testleri gerçek kullanıcı senaryolarını simüle etmek kullanıcı deneyimini değerlendirmek test kullanıcıları testler yapılmıştır testler dosya yükleme analiz başlatma sonuç raporlama süreçlerini kapsamaktadır
+
+süreç veri akış diyagramları
+
+sistemin işleyişini veri akışını iyi görselleştirmek iki farklı akış şeması kullanılmaktadır bunlar sistemin genel akışını metin analizi süreçlerinin detaylarını göstermektedir
+
+sistem genel akış diyagramı
+
+sistemimizin genel mimarisi şekil gösterilmiştir ilgili şekilde numaralandırılan işlemler aşağıdaki şekil dosya yükleme sürecinden rapor görüntüleme sürecine kadar sistemdeki ana adımları göstermektedir
+
+şekil işlemler
+
+metin işleme akış diyagramı
+
+aşağıda şekil metin ön işleme adımlarını temizleme tokenizasyon vb algoritmalarının uygulandığını detaylı bir şekilde göstermektedir
+
+şekil metin ön işleme şeması
+
+karşılaştırma akış diyagramı
+
+karşılaştırma algoritmalarının uygulandığı şekil gösterilmiştir
+
+şekil karşılaştırma şeması
+
+tasarım öngörülen bütçe hesabı
+
+tablo tasarım öngörülen bütçe tablosu
+
+tablo tasarım öngörülen bütçe hesabına ait veriler yer almaktadır
+
+analizler
+
+bölümde geliştirilen sistemin uygulanması sırasında karşılaşılabilecek olası sorunlar sorunların çözümüne yönelik öneriler detaylı olarak ele alınmıştır ayrıca sistemin etkili verimli bir şekilde çalışmasını sağlamak amacıyla risk analizi mühendislik analizi yapılmıştır
+
+risk analizi
+
+geliştirilen sistemin farklı aşamalarında çeşitli riskler tespit edilmiştir risklerin minimize edilmesi sistemin güvenilirliği verimliliği açısından önemlidir
+
+veritabanı bütünlüğü tutarlılık riskleri
+
+risk dosyaların meta verilerinin dosya adı boyutu yükleme tarihi vb analiz sonuçlarının veri tabanına yanlış tutarsız bir şekilde kaydedilmesi hatalı raporlamaya veri kaybına sistemin genel kararlılığının bozulmasına olabilir veri tekrarları eksik veriler yanlış ilişkiler çeşitli şekillerde ortaya çıkabilir
+
+çözüm veritabanı bütünlüğünü tutarlılığını sağlamak aşağıdaki önlemler alınmıştır
+
+veritabanı kısıtlamaları constraints veritabanı şemasında uygun kısıtlamalar örneğin birincil anahtarlar yabancı anahtarlar benzersiz kısıtlamalar boş olmama kısıtlamaları tanımlanarak veri tutarlılığı zorlanmıştır yanlış veri girişlerini engeller veri bütünlüğünü korur
+
+işlemsel bütünlük transactional ıntegrity veritabanı işlemleri atomik tutarlı izole dayanıklı acıd özelliklerini sağlayan işlemler transactions içinde gerçekleştirilir sayede bir işlem tamamlanamazsa veritabanı önceki tutarlı durumuna geri döner veri tutarsızlıkları önlenir örneğin bir dosya yükleme işlemi sırasında dosya meta verileri analiz sonuçları aynı işlem içinde kaydedilir işlemin herhangi bir aşamasında bir hata oluşursa hiçbir veri kaydedilmez
+
+veri doğrulama temizleme düzenli olarak veri doğrulama temizleme işlemleri gerçekleştirilir işlemler veri tabanındaki verilerin tutarlılığını doğruluğunu kontrol eder hatalı tutarsız verileri düzeltir
+
+veritabanı yedekleme geri yükleme veri kaybını önlemek düzenli olarak veritabanı yedekleri alınır gerekli durumlarda veritabanı önceki bir yedekten geri yüklenebilir
+
+hata yönetimi exception handling uygulama kodunda veritabanı etkileşimleri sırasında oluşabilecek istisnaları exceptions yakalamak uygun şekilde işlemek try except blokları benzer hata işleme mekanizmaları kullanılır
+
+performans sorunları
+
+risk büyük boyutlu dosyaların eşzamanlı olarak yüklenmesi analiz edilmesi sunucu kaynaklarını aşırı yükleyerek sistem performansını olumsuz etkileyebilir yanıt sürelerini uzatabilir hatta sistemin çökmesine olabilir
+
+çözüm performansı artırmak sistemin ölçeklenebilirliğini sağlamak aşağıdaki stratejiler uygulanmıştır
+
+çoklu iş parçacığı çoklu süreç multi threading multi processing dosya işleme analiz işlemleri eşzamanlı olarak birden fazla iş parçacığı süreç üzerinde çalıştırılarak paralel hale getirilmiştir işlem hızını artırır sunucu kaynaklarının verimli kullanılmasını sağlar
+
+asenkron işlemler asynchronous operations uzun süren işlemler örneğin analiz işlemleri asenkron olarak gerçekleştirilir ana uygulamanın bloke olmasını engeller kullanıcı arayüzünün yanıt vermeye devam etmesini sağlar
+
+yük dengeleme load balancing birden fazla sunucu kullanılıyorsa yük dengeleme mekanizmaları gelen istekler sunucular arasında eşit olarak dağıtılır tek bir sunucu üzerindeki yükü azaltır sistem performansını iyileştirir
+
+veritabanı optimizasyonu veritabanı sorguları indeksleri optimize edilerek veritabanı işlemlerinin performansı artırılmıştır
+
+önbellekleme caching sık erişilen veriler önbellekte saklanarak veri tabanına yapılan gereksiz erişimler azaltılmıştır
+
+kullanıcı hataları
+
+risk kullanıcıların desteklenmeyen dosya formatlarını yüklemesi yanlış parametrelerle analiz başlatması diğer hatalı girişler yapması beklenmeyen sistem davranışlarına hatalara güvenlik açıklarına yol açabilir
+
+çözüm kullanıcı hatalarını önlemek sistemin güvenliğini artırmak aşağıdaki önlemler alınmıştır
+
+giriş doğrulama ınput validation kullanıcı girişleri dosya formatları analiz parametreleri vb sunucu tarafında kapsamlı bir şekilde doğrulanır desteklenmeyen formatlar geçersiz parametreler tespit edildiğinde kullanıcıya açıklayıcı hata mesajları gösterilir
+
+kullanıcı arayüzü uı kılavuzluğu kullanıcı arayüzü kullanıcıları doğru işlemleri yapmaya yönlendirecek şekilde tasarlanmıştır açık etiketler ipuçları rehberlik mesajları kullanılarak kullanıcı hataları aza indirilmeye çalışılır
+
+mühendislik analizi
+
+projenin başarılı bir şekilde tamamlanması kapsamlı bir mühendislik analizi gerçekleştirilmiştir analizler projenin teknik gereksinimlerini mimarisini test stratejilerini entegrasyon planlarını kapsayarak geliştirme sürecinin sağlam bir temel üzerine oturtulmasını olası teknik sorunların önlenmesini hedefler
+
+gereksinim analizi yönetimi
+
+paydaşlarla yapılan görüşmeler doküman incelemeleriyle detaylı gereksinimler toplanmış fonksiyonel fonksiyonel olmayan gereksinimler olarak sınıflandırılmıştır gereksinimlerin izlenebilirliği değişiklik yönetimi uygun araçlar kullanılarak belirsizliklerin önüne geçilmiş net bir proje kapsamı oluşturulmuştur
+
+sistem mimarisi tasarımı
+
+gereksinimler doğrultusunda sistemin genel mimarisi temel bileşenleri tasarlanmıştır modüler bir yaklaşım benimsenerek sistemin farklı parçalarının bağımsız geliştirilmesi bakımı kolaylaştırılmıştır performans güvenlik ölçeklenebilirlik gereksinimlerini karşılayacak teknolojiler seçilmiş mimarinin doğruluğu uzman incelemeleri prototiplerle teyit edilmiştir
+
+test stratejisi planlaması
+
+sistemin kalitesini güvenilirliğini artırmak kapsamlı bir test stratejisi oluşturulmuştur farklı test seviyeleri türleri belirlenmiş gereksinimlere göre test senaryoları hazırlanmış test otomasyon araçları seçilmiştir sayede hataların erken tespiti projenin genel kalitesinin artırılması hedeflenmiştir
+
+entegrasyon stratejisi
+
+sistemin farklı bileşenlerinin harici sistemlerle sorunsuz entegrasyonu bir strateji geliştirilmiştir entegrasyon arayüzleri net bir şekilde tanımlanmış entegrasyon testleri erken aşamalarda başlatılmıştır entegrasyon sorunlarını aza indirerek sistemin stabil çalışmasını sağlamayı amaçlar
+
+konfigürasyon yönetimi
+
+proje boyunca üretilen çıktıların düzenli saklanması versiyonlanması yönetimi etkili bir konfigürasyon yönetimi stratejisi uygulanmıştır versiyon kontrol sistemi git kullanılarak proje dosyalarının takibi sağlanmış yapılandırma dosyaları dağıtım süreçleri standartlaştırılmıştır
+
+BÖLÜM 4: BULGULAR
+
+bölümde geliştirilen sistemin test edilmesiyle elde edilen bulgular gözlemler özetlenmiştir sistem farklı senaryolarda denenmiş aşağıdaki sonuçlara ulaşılmıştır
+
+zaman kazanımı
+
+sistemin manuel yöntemlere kıyasla analiz sürelerini önemli ölçüde azalttığı gözlemlenmiştir örneğin manuel olarak dakika sürebilen bir analiz işlemi sistem sayesinde ortalama saniyede tamamlanabilmiştir birden fazla belgenin karşılaştırılması gereken senaryolarda toplam süre manuel yöntemlere göre oranında azalmıştır
+
+doğruluk
+
+sistem belgeler arasındaki benzerlikleri tespit etme konusunda genel olarak tatmin edici bir performans sergilemiştir test edilen çift belge üzerinde yapılan analizlerde sistemin doğruluk oranı olarak hesaplanmıştır özellikle metinlerde birebir eşleşen cümlelerde başarı oranı iken yeniden yazılmış karmaşık cümlelerde oran seviyesinde kalmıştır
+
+sistem performansı
+
+apı uç noktalarının yanıt sürelerinin çoğu durumda makul seviyelerde olduğu gözlemlenmiştir ortalama yanıt süreleri ms aralığında seyretmiş yoğun kullanım anlarında bile süre saniyeyi aşmamıştır ancak mb den büyük dosyaların işlenmesi sırasında oranında ek gecikmeler gözlemlenmiştir
+
+kullanıcı deneyimi
+
+arayüz testlere katılan kullanıcıdan si tarafından kolay anlaşılır kullanışlı bulunmuştur analiz sonuçlarının tablolar grafiklerle görselleştirilmesi kullanıcıların sonuçları anlamasına büyük katkı sağlamıştır bununla birlikte lik bir kullanıcı grubu fonksiyonların aşamalı yapısı nedeniyle fazla yardım dokümanına ihtiyaç duyduklarını belirtmiştir
+
+genel değerlendirme
+
+sistem hedeflenen işlevselliği büyük oranda karşılamış kullanıcıların ihtiyaçlarını genel olarak tatmin edici bir şekilde karşılayabilmiştir testlerden elde edilen verilere göre sistem oranında genel başarı sağlamıştır bununla birlikte uygulama sırasında tespit edilen iyileştirme alanları büyük dosya işleme süreleri belirli yeniden yazılmış metinlerdeki analiz hassasiyeti gelecekteki geliştirme aşamalarında ele alınabilir
+
+BÖLÜM 5: TARTIŞMA VE SONUÇ
+
+bölümde geliştirilen sistemin sağladığı avantajlar hedeflere ulaşma durumu karşılaşılan zorluklar sistemin güçlü yönleri tartışılmış ayrıca projenin genel başarısı gelecekteki çalışmalar öneriler sunulmuştur
+
+tartışma
+
+geliştirilen sistem akademik belgeler arasındaki benzerliklerin tespit edilmesine yönelik önemli bir çözüm sunmuştur sistemin sunduğu hız doğruluk kullanım kolaylığı avantajlar mevcut manuel yöntemlere kıyasla belirgin iyileştirmeler sağlamıştır
+
+hedeflerin karşılanması proje başında belirlenen hedefler büyük ölçüde karşılanmış sistem dosyaların karşılaştırılması detaylı raporların sunulması temel işlemleri başarıyla yerine getirmiştir sistem özellikle birebir eşleşen metinlerin doğruluğunu yeniden yazılmış metinlerin tespitini oranında başarıyla tamamlamıştır
+
+karşılaşılan zorluklar büyük boyutlu kompleks yapıdaki dosyaların işlenmesi sırasında performans kaybı yaşanmış yanıt sürelerinde kadar uzamalar gözlemlenmiştir ayrıca metin madenciliği algoritmaları karmaşık ifadeleri yeniden yazımları tam olarak tespit edememiştir kullanıcı deneyimi açısından özellikle analiz sırasında kullanıcı geri bildirimlerinin yetersiz kaldığı durumlar tespit edilmiştir
+
+sistemin güçlü yönleri sistem sayıda belgenin aynı anda karşılaştırılmasına olanak tanıyarak grup çalışmaları önemli bir kolaylık sağlamıştır ayrıca sonuçların tablolar grafiklerle görselleştirilmesi analizlerin hızlı anlaşılır hale gelmesine katkı sağlamıştır testlere katılan kullanıcıların si sistemin genel işlevselliğinden memnun kaldıklarını belirtmiştir
+
+sonuç
+
+proje kapsamında geliştirilen sistem akademik belgelerde benzerlik analizini gerçekleştirme konusunda etkili kullanışlı bir araç olarak değerlendirilmiştir sistemin kullanımı özellikle eğitim kurumlarında grup ödevleri projelerin değerlendirilmesinde zaman emek tasarrufu sağlamıştır
+
+elde edilen başarılar belgelerin birbiriyle çoka eşleşme yöntemiyle analiz edilmesi detaylı kullanıcı dostu raporların oluşturulması açık kaynak teknolojilerin kullanımı sayesinde sistem maliyetlerinin düşürülmesi sağlanmıştır
+
+gelecekteki çalışmalar sistemin gelecekte büyük veri kümesi farklı dosya türlerine uyarlanabilir hale getirilmesi yeniden yazım karmaşık ifadelerin tespitinde gelişmiş doğal dil işleme tekniklerinin entegrasyonu arayüz rehberliğinin artırılması gizlilik önlemlerinin güçlendirilmesi hedeflenmektedir
+
+sonuç olarak geliştirilen sistem mevcut haliyle kullanıcılara değerli bir araç sunarken gelecekteki iyileştirme geliştirme çalışmalarıyla geniş bir kullanım alanına hitap etme potansiyeli taşımaktadır
+
+KAYNAKLAR
+
+uzun karakuş kurşun and karaaslan öğrenci gözüyle aşırma intihal çözüm önerileri akademik bilişim ıx akademik bilişim konferansı bildirileri dumlupınar üniversitesi kütahya türkiye jan feb pp
+
+meo and talha turnitin ıs it text matching ör plagiarism detection tool saudi journal of anaesthesia vol suppl pp apr doı sja
+
+condurache and bolboacă comparison of plagiarism detection performance between some commercial and free software appl med ınform vol no pp jun
+
+chikkam plagiarism checker all capstone projects spring
+
+gunawan sembiring and budiman the ımplementation of cosine similarity to calculate text relevance between two documents journal of physics conference series vol no doi
+
+del pilar angeles and espino gamez comparison of methods hamming distance jaro and monge elkan dbkda the seventh ınternational conference on advances in databases knowledge and data applications graphsm the second ınternational workshop on large scale graph storage and management rome ıtaly may ısbn
+
+cahyono comparison of document similarity measurements in scientific writing using jaro winkler distance method and paragraph vector method ıop conference series materials science and engineering vol no pp doi
+
+li wang zhang and sun generic sao similarity measure via extended sørensen dice ındex in ıeee access vol pp doi access
+
+fontoura costa further generalizations of the jaccard ındex ao carlos ınstitute of physics dfcm usp oct
+
+aizawa an information theoretic perspective of tf idf measures national ınstitute of ınformatics tokyo japan aug accepted jan
+
+zhang hu and bian research on string similarity algorithm based on levenshtein distance ıeee advanced ınformation technology electronic and automation control conference ıaeac chongqing china pp doi ıaeac
+
+STANDARTLAR VE KISITLAR FORMU
+
+çalışmanın amacını özetleyiniz
+
+çalışmanın amacı akademik belgeler arasında benzerlik analizlerini gerçekleştiren çoka eşleştirme yapabilen kullanıcı dostu eğitim odaklı bir yazılım sistemi geliştirmektir sistem belgelerin benzerlik oranlarını detaylı raporlarla sunarak intihal tespit sürecini kolaylaştırmayı hedeflemektedir
+
+çalışmanın tasarım boyutunu açıklayınız
+
+proje tamamen yeni bir çalışmadır çalışmanın tasarımı proje toplamının ünü oluşturmaktadır başlangıçtan son aşamaya kadar süreç gereksinim analizi tasarım geliştirme test raporlama çalışmaya özgü olarak gerçekleştirilmiştir
+
+çalışmada bir mühendislik problemini kendiniz formüle edip çözdünüz
+
+evet akademik belgelerin benzerlik analizini gerçekleştiren mevcut ticari yazılımların yetersizlikleri çoka eşleştirme eksikliği yüksek maliyet tespit edilerek soruna yönelik uygun bir çözüm geliştirilmiştir örneğin grup ödevlerinde belgelerin birbiriyle kapsamlı analiz edilmesi sorununu çözmek özel algoritmalar kullanıcı dostu bir sistem geliştirilmiştir
+
+çalışmada kullandığınız yöntemler nelerdir önceki derslerde edindiğiniz hangi bilgi becerileri kullandınız açıklayınız
+
+çalışmada kullanılan yöntemler arasında doğal dil işleme nlp metin analizi algoritma tasarımı cosine similarity jaccard ındex levenshtein distance yazılım geliştirme flask vue js veri tabanı tasarımı mssql yer almaktadır projede algoritma programlamaya giriş nesneye yönelik programlama veri yapıları algoritmalar veri tabanı yönetim sistemleri yapay zeka uygulamaları yapay öğrenmenin temelleri yazılım mühendisliği derslerinden edinilen bilgi beceriler kullanılmıştır derslerde kazanılan programlama temelleri python javascript veri tabanı yönetimi proje yönetimi doğal dil işleme teknikleri projede etkin bir şekilde uygulanmıştır
+
+kullandığınız dikkate aldığınız mühendislik standartları nelerdir
+
+ıso ıec yazılım ürün kalitesi ıeee yazılım doğrulama geçerlilik ıso ıec yazılım mühendisliği ürün kalitesi ıeee yazılım test dokümantasyonu mühendislik standartları kullanılmıştır
+
+kullandığınız dikkate aldığınız gerçekçi kısıtlar nelerdir lütfen çalışmanıza uygun yanıtlarla doldurunuz
+
+ekonomi açık kaynak teknolojiler tercih edilerek maliyet azaltılmıştır ticari yazılımlara kıyasla düşük maliyetli bir çözüm sunulmuştur
+
+çevre sorunları dijital bir çözüm olması kâğıt tüketimini azaltarak çevre dostu bir alternatif sağlamaktadır
+
+sürdürülebilirlik sistem açık kaynak ölçeklenebilir mimarisiyle uzun vadeli kullanım uygundur
+
+üretilebilirlik flask vue js yaygın kullanılan teknolojilerle geliştirildiği kolayca genişletilebilir sürdürülebilir
+
+etik akademik etik değerleri desteklemek amacıyla intihalin önlenmesine yönelik bir sistem tasarlanmıştır
+
+sağlık tasarım projesi sağlık ilgili herhangi bir alanla ilgilenmemektedir sağlık açısından sorun teşkil etmemektedir
+
+güvenlik dosya yükleme kullanıcı kimlik doğrulama süreçlerinde güvenlik önlemleri örneğin jwt uygulanmıştır
+
+sosyal politik sorunlar sistem akademik dürüstlüğü desteklemek adil değerlendirme süreçlerini teşvik etmek amacıyla tasarlanmıştır
+
+ÖZGEÇMİŞ
+
+hakan değer kocaeli doğdu ilk orta lise eğitimini kocaeli tamamladı yılında kasım anadolu lisesi nden mezun oldu lise eğitiminin ardından yılında kocaeli üniversitesi makine mühendisliği bölümünü kazandı yılında merkezi yerleştirme puanı sakarya uygulamalı bilimler üniversitesi bilgisayar mühendisliği bölümüne yatay geçiş yaptı mesleki ilgi alanları arasında doğal dil işleme makine öğrenmesi mobil uygulama geliştirme yer almaktadır
+
+ÖZGEÇMİŞ
+
+emre almamış muş ta doğdu ilk orta lise eğitimini kocaeli tamamladı yılında muallim naci anadolu lisesi nden mezun oldu lise eğitiminin ardından yılında sakarya uygulamalı bilimler üniversitesi bilgisayar mühendisliği bölümünü kazandı mesleki ilgi alanları arasında web mobil geliştirme yer almaktadır
+
+ÖZGEÇMİŞ
+
+ismail selim inanır sakarya doğdu ilk öğretimini sakarya tamamladı orta lise eğitimini tokat ta tamamladı yılında özel ay ışığı fen lisesi nden mezun oldu lise eğitiminin ardından yılında sakarya uygulamalı bilimler üniversitesi bilgisayar mühendisliği bölümünü kazandı mesleki ilgi alanları arasında görüntü işleme doğal dil işleme mobil uygulama geliştirme yer almaktadır

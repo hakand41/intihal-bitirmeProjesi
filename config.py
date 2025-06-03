@@ -21,7 +21,7 @@ DB_CONFIG = {
 }
 
 # Dosya Yükleme ve Sonuç Klasörleri
-UPLOAD_FOLDER = r'' # Windows için raw string
+UPLOAD_FOLDER = r'C:\Users\hakan\OneDrive\Masaüstü\deneme\uploads' # Windows için raw string
 JSON_RESULTS_FOLDER = os.path.join(UPLOAD_FOLDER, "json_results")
 
 # Diğer Ayarlar
