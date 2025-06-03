@@ -340,72 +340,82 @@ def compare_html_route():
 def jplag_view_route():
     if not request.is_json:
         return jsonify({"error": "JSON bekleniyor."}), 415
+    
     data = request.get_json()
     cid_str = data.get("content_id")
     if not cid_str:
         return jsonify({"error": "content_id eksik."}), 400
-    
+
     try:
         cid = int(cid_str)
     except ValueError:
         return jsonify({"error": "content_id sayısal bir değer olmalı."}), 400
 
     try:
-        lang, _ = get_content_info(cid) 
-    except ValueError as e: 
+        lang, _ = get_content_info(cid)
+    except ValueError as e:
+        current_app.logger.error(f"get_content_info({cid}) başarısız: {e}")
         return jsonify({"error": str(e)}), 404
 
     if lang.lower() not in app.config['CODE_LANGS']:
         return jsonify({"error": f"İçerik türü ({lang}) JPlag tarafından desteklenmiyor."}), 400
 
-    prev = VIEW_PROCS.get(str(cid)) 
-    if prev and prev.poll() is None: 
-        port_from_proc = 2999 
+    # Daha önce aynı content_id ile bir arayüz zaten başlatılmış mı?
+    prev = VIEW_PROCS.get(str(cid))
+    if prev and prev.poll() is None:
+        port_from_proc = 2999
         current_app.logger.info(f"JPlag view for {cid} already running on port {port_from_proc}.")
         return jsonify({
             "message": f"JPlag arayüzü zaten {port_from_proc} portunda çalışıyor.",
             "url": f"http://localhost:{port_from_proc}"
         }), 200
-        
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute(
-        "SELECT TOP 1 ZipPath FROM JplagJobs WHERE IcerikId = ? ORDER BY CreatedAt DESC",
-        (cid,)
-    )
-    row = cur.fetchone()
-    conn.close()
+
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT TOP 1 ZipPath FROM JplagJobs WHERE IcerikId = ? ORDER BY CreatedAt DESC",
+            (cid,)
+        )
+        row = cur.fetchone()
+    except Exception as db_err:
+        current_app.logger.error(f"Veritabanı hatası: {db_err}", exc_info=True)
+        return jsonify({"error": "Veritabanı hatası oluştu."}), 500
+    finally:
+        conn.close()
+
     if not row or not row[0]:
+        current_app.logger.warning(f"ZipPath verisi bulunamadı: IcerikId = {cid}")
         return jsonify({"error": "JPlag raporu (ZipPath) bulunamadı."}), 404
 
     zip_path = os.path.abspath(row[0])
     if not os.path.isfile(zip_path):
+        current_app.logger.error(f"Zip dosyası diskte bulunamadı: {zip_path}")
         return jsonify({"error": f"Rapor zip dosyası bulunamadı: {zip_path}"}), 500
 
-    port = 2999 
-    jar_path  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "jplag-6.1.0-jar-with-dependencies.jar")
-    
+    jar_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "jplag-6.1.0-jar-with-dependencies.jar")
     if not os.path.isfile(jar_path):
-        current_app.logger.error(f"JPlag JAR not found at {jar_path}")
+        current_app.logger.error(f"JPlag JAR bulunamadı: {jar_path}")
         return jsonify({"error": "JPlag aracı (JAR dosyası) bulunamadı."}), 500
 
-    cmd  = ["java", "-jar", jar_path, zip_path, "-M", "VIEW", "-l", lang, "-P", str(port)]
-    current_app.logger.info(f"Executing JPlag view command: {' '.join(cmd)}")
-    
+    port = 2999
+    cmd = ["java", "-jar", jar_path, zip_path, "-M", "VIEW", "-l", lang, "-P", str(port)]
+    current_app.logger.info(f"JPlag komutu çalıştırılıyor: {' '.join(cmd)}")
+
     try:
         proc = subprocess.Popen(
             cmd,
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE, 
+            stderr=subprocess.PIPE,
             stdin=subprocess.PIPE,
             text=True,
-            cwd=os.path.dirname(jar_path) 
+            cwd=os.path.dirname(jar_path)
         )
     except FileNotFoundError:
-        current_app.logger.error("Java executable not found. Ensure Java is installed and in PATH.")
+        current_app.logger.error("Java bulunamadı. Java yüklü mü ve PATH'e eklendi mi?")
         return jsonify({"error": "Java bulunamadı. Lütfen Java'nın kurulu ve PATH'de olduğundan emin olun."}), 500
     except Exception as popen_e:
-        current_app.logger.error(f"Failed to start JPlag view process: {popen_e}", exc_info=True)
+        current_app.logger.error(f"JPlag arayüzü başlatılamadı: {popen_e}", exc_info=True)
         return jsonify({"error": f"JPlag arayüzü başlatılamadı: {popen_e}"}), 500
 
     def _stream_jplag_log(process_to_log, log_prefix):
@@ -414,40 +424,36 @@ def jplag_view_route():
                 for line in iter(stream.readline, ''):
                     current_app.logger.info(f"[{log_prefix}_{stream_name}] {line.strip()}")
             except Exception as e_stream:
-                 current_app.logger.error(f"Error in JPlag log stream {stream_name} for {log_prefix}: {e_stream}")
+                current_app.logger.error(f"Log akışında hata ({stream_name}): {e_stream}")
             finally:
-                if stream and not stream.closed: 
+                if stream and not stream.closed:
                     try:
                         stream.close()
-                    except Exception as e_close_stream:
-                        current_app.logger.error(f"Error closing JPlag log stream {stream_name} for {log_prefix}: {e_close_stream}")
+                    except Exception as e_close:
+                        current_app.logger.error(f"Akış kapatılamadı ({stream_name}): {e_close}")
 
-        stdout_thread = threading.Thread(target=log_stream, args=(proc.stdout, "STDOUT"))
-        stderr_thread = threading.Thread(target=log_stream, args=(proc.stderr, "STDERR"))
-        stdout_thread.daemon = True
-        stderr_thread.daemon = True
-        stdout_thread.start()
-        stderr_thread.start()
+        threading.Thread(target=log_stream, args=(proc.stdout, "STDOUT"), daemon=True).start()
+        threading.Thread(target=log_stream, args=(proc.stderr, "STDERR"), daemon=True).start()
 
     _stream_jplag_log(proc, f"JPLAG_VIEW_{str(cid)[:8]}")
+    time.sleep(2)
 
-    time.sleep(2) 
-
-    if proc.poll() is not None: 
-        current_app.logger.error(f"JPlag view process for {cid} terminated unexpectedly. Check logs.")
+    if proc.poll() is not None:
+        current_app.logger.error(f"JPlag işlemi erken sonlandı: IcerikId = {cid}")
         return jsonify({"error": "JPlag arayüzü başlatılırken bir sorun oluştu. Logları kontrol edin."}), 500
 
-    VIEW_PROCS[str(cid)] = proc 
+    VIEW_PROCS[str(cid)] = proc
 
     try:
         webbrowser.open(f"http://localhost:{port}")
     except Exception as wb_e:
-        current_app.logger.warning(f"Could not open web browser: {wb_e}")
+        current_app.logger.warning(f"Tarayıcı açılamadı: {wb_e}")
 
     return jsonify({
         "message": "JPlag arayüzü başlatıldı.",
         "url": f"http://localhost:{port}"
     }), 200
+
 
 @app.route('/compare_json', methods=['POST'])
 def compare_json_route():

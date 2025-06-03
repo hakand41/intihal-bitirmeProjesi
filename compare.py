@@ -94,16 +94,27 @@ def parse_jplag_results(zip_path, content_id):
 def run_jplag_batch(source_folder, language):
     os.makedirs("results", exist_ok=True)
     job_id = str(uuid.uuid4())
-    result_path = os.path.join("results", job_id)
+    result_base = os.path.join("results", job_id)
+    jplag_file = result_base + ".jplag"
+    zip_file   = result_base + ".zip"  # hedef dosya yolu
+
     cmd = [
         "java", "-jar", "./jplag-6.1.0-jar-with-dependencies.jar",
         source_folder,
         "-l", language,
         "-M", "RUN",
-        "-r", result_path
+        "-r", result_base
     ]
     subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    return job_id, result_path + ".zip"
+
+    # Dosya adını .jplag → .zip olarak değiştir
+    if os.path.exists(jplag_file):
+        os.rename(jplag_file, zip_file)
+    else:
+        raise FileNotFoundError(f"JPlag çıktı dosyası bulunamadı: {jplag_file}")
+
+    return job_id, os.path.abspath(zip_file)
+
 
 # =====================
 # Metin benzerlik konfigürasyonu
@@ -189,16 +200,20 @@ def perform_comparison(content_id):
         if not os.path.isdir(folder):
             raise FileNotFoundError(f"{folder} bulunamadı.")
 
-        job_id, zip_path = run_jplag_batch(folder, icerik_turu)
+        job_id, relative_zip_path = run_jplag_batch(folder, icerik_turu)
+        zip_path = os.path.abspath(relative_zip_path)
 
         # Job kaydı
         conn = get_db_connection()
         cur = conn.cursor()
 
         now = datetime.now(timezone.utc).replace(tzinfo=None)
+        created_at = datetime.now()
+        status = "PENDING"
+
         cur.execute(
-            "INSERT INTO JplagJobs (JobId, IcerikId, ZipPath) VALUES (?,?,?)",
-            (job_id, content_id, zip_path)
+            "INSERT INTO JplagJobs (JobId, IcerikId, ZipPath, CreatedAt, Status) VALUES (?, ?, ?, ?, ?)",
+            (job_id, content_id, zip_path, created_at, status)
         )
         conn.commit()
         conn.close()
